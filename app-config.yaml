@@ -1,17 +1,17 @@
 app:
-  title: Scaffolded Backstage App
+  title: Hiphop billboard
   baseUrl: http://localhost:3000
 
 organization:
-  name: My Company
+  name: Phonk Bass
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
   # See https://backstage.io/docs/auth/service-to-service-auth for
   # information on the format
-  # auth:
-  #   keys:
-  #     - secret: ${BACKEND_SECRET}
+  auth:
+    keys:
+      - secret: ${BACKEND_SECRET}
   baseUrl: http://localhost:7007
   listen:
     port: 7007
@@ -36,7 +36,7 @@ integrations:
   github:
     - host: github.com
       # This is a Personal Access Token or PAT from GitHub. You can find out how to generate this token, and more information
-      # about setting up the GitHub integration here: https://backstage.io/docs/getting-started/configuration#setting-up-a-github-integration
+      # about setting up the GitHub integration here: https://backstage.io/docs/integrations/github/locations#configuration
       token: ${GITHUB_TOKEN}
     ### Example for how to add your GitHub Enterprise instance using the API:
     # - host: ghe.example.net
@@ -63,8 +63,19 @@ techdocs:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
 auth:
-  # see https://backstage.io/docs/auth/ to learn about auth providers
-  providers: {}
+    providers:
+      github:
+        development:
+          clientId: ${AUTH_GITHUB_CLIENT_ID}
+          clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
+        # signIn:
+        #   # clientId: ${AUTH_GITHUB_CLIENT_ID}
+        #   # clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
+        #   resolvers:
+        #     # typically you would pick one of these
+        #     # - resolver: emailMatchingUserEntityProfileEmail
+        #     # - resolver: emailLocalPartMatchingUserEntityName
+        #     - resolver: usernameMatchingUserEntityName
 
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
